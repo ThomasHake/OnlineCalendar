@@ -1,0 +1,148 @@
+@import "Calendar.js-main/src/calendarjs.css"; /* Using a string */
+
+body{
+  background: linear-gradient(145deg, black, silver, black);
+  background-attachment: fixed;
+  text-align: center;
+}
+
+h1{color: lightsteelblue}
+
+form{text-align: right}
+
+div.calendar div.footer {
+  font-size: x-small !important;
+  background-color: #282828;
+  color: #F5F5F5;
+  text-align: right;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-right: 1%;
+  width: 99%;
+}
+
+div.full-screen-view div.footer {
+  position: fixed;
+  bottom: 0;
+  z-index 2;
+}
+
+div.full-day-view div.contents div.footer{
+  padding-bottom: 6px;
+}
+
+/*
+
+@colorw: #06b;
+
+.ib-save-icon {
+  background: #eaeaea;
+  color: @colorw;
+  font-size: 40px;
+  margin-left: 20px;
+  position: relative;
+  padding: 3px 8px 3px 32px;
+}
+.ib-save-icon::before{
+  box-sizing: border-box;
+  content: "";
+  position: absolute;
+  background: #fff;
+  border-color: @color;
+  border-style: solid;
+  border-width: 7px 2px 1px 3px;
+  border-radius: 1px;
+  height: 16px;
+  left: 8px;
+  top: 5px;
+  width: 16px;
+  }
+
+.ib-save-icon::after {
+  box-sizing: border-box;
+  content: "";
+  position: absolute;
+  background: @color;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 1px 1px 1px 4px;
+  height: 5px;
+  left: 13px;
+  top: 5px;    
+  width: 7px;
+  }
+
+******************************************
+
+
+.ib-save-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block ;
+  position: relative;
+  float: right;
+}
+
+.ib-save-icon:not(.ib-no-hover):hover {
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.ib-save-icon:not(.ib-no-active):active {
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.ib-save-icon:before, .ib-save-icon:after {
+  position: absolute;
+  content: "";
+}
+
+.ib-save-icon:before {
+  margin-left: -8px;
+  width: 12px;
+  height: 8px;
+  background: #282828;
+  border-color: #F5F5F5;
+  border-style: solid;
+  border-width: 7px 2px 1px 2px;
+  border-radius: 3px;
+}
+
+.ib-save-icon:after {
+  background-color: #F5F5F5;
+  border-color: #282828;
+  border-style: solid;
+  border-width: 1px;
+  border-right-width: 2px;
+  border-left-width: 5px;
+  height: 3px;
+  width: 2px;
+  margin-top: 1px;
+  margin-left: -4px;
+}
+
+
+@media screen and (min-width: 451px) {
+  .ib-save-icon {
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .ib-save-icon{
+    display: none !important;
+  }
+}
+
+*/
+
+
+
+
+
+
