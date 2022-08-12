@@ -1,4 +1,4 @@
-import {calendarJs} from "Calendar.js-main/src/calendarjs.js";
+import {calendarJs} from "./Calendar.js/src/calendarjs.js";
 
 
 
