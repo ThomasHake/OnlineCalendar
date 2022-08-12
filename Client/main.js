@@ -1,7 +1,5 @@
 import {calendarJs} from "./Calendar.js/src/calendarjs.js";
 
-
-
 // calendarJs(id, options, startDateTime)
 var calendarInstance = new calendarJs( "myCalendar", { 
             exportEventsEnabled: false,
@@ -11,4 +9,8 @@ var calendarInstance = new calendarJs( "myCalendar", {
             organizerName: "",
             organizerEmailAddress: "your@email.address",
             visibleDays: [ 0, 1, 2, 3, 4, 5, 6 ],
-            });
+            })
+
+fetch('/calendarjs/events/all')
+			.then((response) => response.json())
+			.then((events) => calendarInstance.setEvents(events));

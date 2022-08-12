@@ -7,26 +7,3 @@ body{
 }
 
 h1{color: lightsteelblue}
-
-form{text-align: right}
-
-div.calendar div.footer {
-  font-size: x-small !important;
-  background-color: #282828;
-  color: #F5F5F5;
-  text-align: right;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-right: 1%;
-  width: 99%;
-}
-
-div.full-screen-view div.footer {
-  position: fixed;
-  bottom: 0;
-  z-index 2;
-}
-
-div.full-day-view div.contents div.footer{
-  padding-bottom: 6px;
-}
