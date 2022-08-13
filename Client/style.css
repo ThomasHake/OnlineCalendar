@@ -1,0 +1,9 @@
+@import "Calendar.js/src/calendarjs.css"; 
+
+body{
+  background: linear-gradient(145deg, black, silver, black);
+  background-attachment: fixed;
+  text-align: center;
+}
+
+h1{color: lightsteelblue}
