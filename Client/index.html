@@ -3,11 +3,23 @@
 	<head>
 		<meta charset="utf-8">
         <link rel="stylesheet" href="style.css">
-		<title>test web page</title>
+		<script src="main.js"></script>
+		<title>Online Calender</title>
 	</head>
 	<body>
-		<h1>Test Calendar </h1>
-		<div id="myCalendar"></div>
-        <script type="module" src="main.js"></script>
+		<h1>Online Calendar</h1>
+		<div id="myCalendar">
+		</div>
+        <script>
+			// makeCalendarJs(id, options, searchOptions, startDateTime)
+			makeCalendarJs( "myCalendar", { 
+				exportEventsEnabled: false,
+				manualEditingEnabled: true,
+				showTimesInMainCalendarEvents: false,
+				onEventAdded: addEvent,
+				onEventRemoved: removeEvent,
+				onEventUpdated: updateEvent,
+				});
+		</script>
    	</body>
 </html>

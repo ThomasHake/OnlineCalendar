@@ -1,3 +1,4 @@
-Server/events.db
+Server/database/events.db
 Server/node_modules
-Server/login.db
+Server/ιunused
+Server/.env

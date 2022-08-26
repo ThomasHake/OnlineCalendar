@@ -4,6 +4,74 @@ body{
   background: linear-gradient(145deg, black, silver, black);
   background-attachment: fixed;
   text-align: center;
+  z-index: 0;
 }
 
-h1{color: lightsteelblue}
+h1{color: lightsteelblue;}
+
+#editMode {
+  display: none;
+  color: lightsteelblue;
+}
+
+.AuthenticationTab {
+  position: relative;
+  text-align: center;
+  margin-left: auto;
+  left: 2px;
+  top: 5px;
+  width: 220px;
+  padding-top: 7px;
+  padding-bottom: 5px;
+  background-color: #282828;
+  border: 1px solid #282828;
+  border-radius: .25rem;
+}
+
+.ib-circle-check {
+  margin-left: 10px;
+  width: 18px;
+  height: 18px;
+  display: inline;
+  background-color:  #282828;
+  position: relative;
+  top: -4px;
+  border: 3px solid #F5F5F5;
+  border-radius: 1rem;
+}
+
+.ib-circle-check:not(.ib-no-hover):hover {
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.ib-circle-check:not(.ib-no-active):active {
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.ib-circle-check:before, .ib-circle-check:after {
+  position: absolute;
+  content: "";
+  height: 3px;
+  background: #F5F5F5;
+  border-radius: .25rem
+}
+
+.ib-circle-check:before {
+  transform: rotate(45deg);
+  width: 6px;
+  top: 5px;
+  left: 0px;
+}
+
+.ib-circle-check:after {
+  transform: rotate(135deg);
+  width: 12px;
+  top: 4px;
+  left: 2px;
+}
