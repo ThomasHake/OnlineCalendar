@@ -1,6 +1,7 @@
 ## Content
 
 - [ ] allow user to set password when there is no password
+- [ ] set tooltip text for edit mode button
 - [ ] add options
   - [ ] allow user to change password
   - [ ] allow user to change token duration?
