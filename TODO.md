@@ -1,5 +1,6 @@
 ## Content
 
+- [ ] save token client side in http only cookie
 - [ ] allow user to set password when there is no password
 - [ ] store token as cookie and stay in edit mode on reload
 - [ ] set tooltip text for edit mode button
