@@ -1,14 +1,21 @@
+const cookieParser = require('cookie-parser');
 const express = require('express');
 const path = require('path');
-const eventRouter = require('./events/events-router');
-const authenticationRouter = require('./authentication/authentication-router');
+const createEventRouter = require('./events/events-router');
+const createAuthenticationRouter = require('./authentication/auth-router');
+const Router = express.Router;
 const server = new express();
+ 
 
 server.use(express.static(path.join(__dirname, '..', 'Client')));
-server.use(express.json({limit: '1mb'}));      
+server.use(express.json({limit: '1mb'}));   
+server.use(cookieParser());
 
-server.use('/calendarjs', eventRouter);
+authenticationRouter = createAuthenticationRouter();
+eventRouter = createEventRouter();
+
 server.use('/authentication', authenticationRouter);
+server.use('/calendarjs', eventRouter);
 
 
 const port = process.env.PORT || 3000;

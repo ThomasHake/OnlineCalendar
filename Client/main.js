@@ -1,91 +1,27 @@
-
-
-/*
-* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-* calendarJs
-* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-*/
-
-function makeCalendarJs(id, options, searchOptions, startDateTime){
-	_element_Calendar = document.getElementById(id);
-	
-	_element_AuthenticationTab = document.createElement('form');
-	_element_AuthenticationTab.id = 'authenticationTab';
-	_element_Calendar.appendChild(_element_AuthenticationTab);
-	
-	_element_CalendarJs = document.createElement('div');
-	_element_CalendarJs.id = 'myCalendarJs'
-	_element_Calendar.appendChild(_element_CalendarJs);
-	
-	var authenticationTab = new authentication('authenticationTab');
-  
-	import('./Calendar.js/src/calendarjs.js')
-		.then(({calendarJs}) => {
-			var calendarInstance = new calendarJs( 'myCalendarJs', options, searchOptions, startDateTime);
-			fetch('/calendarjs/events/all')
-				.then((response) => response.json())
-				.then((events) => {
-					console.log(events);
-					calendarInstance.setEvents(events)})
-				.catch((err) => console.log(err));
-		});
-}
-
-
-function setAllEvents(calendarInstance){		//combine with new calenderjs using import system?
-	fetch('/calendarjs/events/all')
-		.then((response) => response.json()) 
-		.then((events) => calendarInstance.setEvents(events))
-		.catch((err) => console.log(err));
-}
-
-function addEvent(event){
-	fetch('/calendarjs/events', {
-		method: 'POST',
-		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json',
+//OnlineCalendar()
+function OnlineCalendar(id, calendarJsArguments){		//add options argument later
+	var _this = this,
+		_calendarJsFile = './Calendar.js/src/calendarjs.js',
+		_default_CalendarJsArguments = {
+			id: 'myCalendarJs',
+			options:{ 
+				exportEventsEnabled: false,
+				manualEditingEnabled: false,
+				showTimesInMainCalendarEvents: false,
+			},
 		},
-		body: JSON.stringify(event)
-	});
-}
+		_document = null,
+		_window = null,
+		_token = '',
+		_initialized = false,
+		_element_OnlineCalendar = null,
+		_element_PasswordTab = null,
+		_element_PasswordInput = null,
+		_element_EditMode = null,
+		_element_CalendarJs = null,
+		_calendarInstance = null;
 
-function removeEvent(event){
-	fetch('/calendarjs/events', {method: 'DELETE',
-      		headers: {
-        	'Accept': 'application/json',
-        	'Content-Type': 'application/json',
-      		},
-      		body: JSON.stringify(event)
-    	});
-}
-
-function updateEvent(event){
-	fetch('/calendarjs/events', {method: 'PUT',
-      		headers: {
-        	'Accept': 'application/json',
-        	'Content-Type': 'application/json',
-      		},
-      		body: JSON.stringify(event)
-    	});
-}
-
-/*
-* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-* authentication
-* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-*/
-function authentication( id ){
-	_this = this,
-	_document = null,
-	_window = null,
-	_token = '',
-	_initialized = false,
-	_element_AuthenticationTab = null,
-	_element_PasswordInput = null,
-	_element_EditMode = null;
-
-	function build() {
+	function buildAuthenticationTab() {
 		buildPasswordInputView();
 		buildEditModeView();
 		
@@ -93,24 +29,36 @@ function authentication( id ){
 	}
 	
 	function buildPasswordInputView() {
-		_element_PasswordInput = _document.createElement( 'input' );
+		_element_PasswordTab = _document.createElement('form');
+		_element_PasswordTab.className = 'authenticationTab'
+		_element_OnlineCalendar.appendChild(_element_PasswordTab);
+		
+		_element_PasswordInput = _document.createElement('input');
 		_element_PasswordInput.id = 'calendarPassword';
 		_element_PasswordInput.type = 'password';
 		_element_PasswordInput.placeholder = 'Password';
-		_element_AuthenticationTab.appendChild(_element_PasswordInput);
+		_element_PasswordTab.appendChild(_element_PasswordInput);
 		
-		_element_PasswordButton = _document.createElement( 'button' ); 
+		_element_PasswordButton = _document.createElement('button'); 
 		_element_PasswordButton.type = 'submit';
-		_element_PasswordButton.classList.add('ib-circle-check');
-		_element_AuthenticationTab.appendChild(_element_PasswordButton);
+		_element_PasswordButton.className = 'ib-circle-check';
+		_element_PasswordTab.appendChild(_element_PasswordButton);
 		
-		_element_AuthenticationTab.addEventListener('submit', authenticate);
+		_element_PasswordTab.addEventListener('submit', authenticate);
 	}
 		
-	async function authenticate(event) {						//async? await fetch?
+	
+	function buildEditModeView(){
+		_element_EditMode = _document.createElement('div');
+		_element_EditMode.className = 'editMode authenticationTab';
+		_element_EditMode.innerHTML = 'edit mode';
+		_element_OnlineCalendar.appendChild(_element_EditMode);
+	}
+	
+	async function authenticate(event) {		//httpOnly cookie in response
 		event.preventDefault();
 		const password = _document.getElementById('calendarPassword').value;
-		const result = await fetch('/authentication/authenticate', {
+		await fetch('/authentication/authenticate', {
 			method: 'POST',
 			headers: {
 				'content-Type': 'application/json'
@@ -121,31 +69,149 @@ function authentication( id ){
 		})
 		.then(res => res = res.json())
 		.then((res) => {
-			_token = res.token;
-			console.log('token: ', _token);  
+			showEditMode();
 		})
 		.catch(err => console.log(err));
-		return result;
 	}	
-
-	function buildEditModeView(){
-		_element_EditMode = _document.createElement( 'div' );
-		_element_EditMode.id = 'editMode';
-		_element_EditMode.innerHTML = 'edit mode';
-		_element_AuthenticationTab.appendChild(_element_EditMode);
+	
+	function showEditMode(){
+		_element_PasswordTab.style.display = 'none';
+		_element_EditMode.style.display = 'block';
+		setEditModeOptions();
 	}
+	
+	function setEditModeOptions(){
+		_calendarInstance.setOptions({
+			manualEditingEnabled: true,
+			onEventAdded: addEvent,
+			onEventRemoved: removeEvent,
+			onEventUpdated: updateEvent,
+		});
+	}
+	
+	function buildCalendarJs(calendarJsArguments){
+		if(calendarJsArguments === undefined)
+			calendarJsArguments = _default_CalendarJsArguments;
+		
+		_element_CalendarJs = _document.createElement( 'div' );
+		_element_CalendarJs.id = calendarJsArguments.id;
+		_element_OnlineCalendar.appendChild(_element_CalendarJs)
+		
+		import(_calendarJsFile)
+		.then(({calendarJs}) => {
+			_calendarInstance = new calendarJs(calendarJsArguments.id,
+											   calendarJsArguments.options,
+											   calendarJsArguments.searchOptions,
+											   calendarJsArguments.startDateTime);
+			getAllEvents(_calendarInstance);
+		});
+	}
+	
+	
+	/*
+	 * ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	 * Get/Add/Remove Events from Server 
+	 * ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	 */
+
+	
+	function getAllEvents(calendarInstance){
+		fetch('/calendarjs/events/all', {'Accept': 'application/json'})
+			.then((response) => response.json()) 
+			.then((events) => calendarInstance.setEvents(events))
+			.catch((err) => console.log(err));
+	}
+
+	function addEvent(event){
+		fetch('/calendarjs/events', {
+			method: 'POST',
+			credentials: 'include',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': _token,
+			},
+		body: JSON.stringify(event)
+		});
+	};
+
+	function removeEvent(event){
+		fetch('/calendarjs/events', {
+			method: 'DELETE',
+			credentials: 'include',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': _token,
+				},
+			body: JSON.stringify(event)
+			});
+	};
+
+	function updateEvent(event){
+		fetch('/calendarjs/events', {
+			method: 'PUT',
+			credentials: 'include',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': _token,
+			},
+		body: JSON.stringify(event)
+		});
+	};
+
+	/*
+     * ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+     * Initialize OnlineCalendar
+     * ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+     */
 
 	( function ( documentObject, windowObject ) {
 		_document = documentObject;
         _window = windowObject;
+		_elementID = id;
 		
-		_element_AuthenticationTab = _document.getElementById( id );
-		_element_AuthenticationTab.classList.add('AuthenticationTab');
-		_element_AuthenticationTab.innerHTML = '';			//for if already defined?
+        if ( _elementID !== undefined ) {		//TODO beter validation?
+			var element = _document.getElementById( _elementID );
 
-        if ( _element_AuthenticationTab !== undefined ) {		//more and beter validation?
-            build();
+			_element_OnlineCalendar = element;
+        	_element_OnlineCalendar.innerHTML = "";
+			
+            buildAuthenticationTab();
+			buildCalendarJs(calendarJsArguments);
 		}
-	}) ( document, window );		
-	
+		
+	} ) ( document, window );			
 }
+
+/*
+* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* calendarJs
+* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+function OnlineCalender(id, options, searchOptions, startDateTime){
+	_element_Calendar = document.getElementById(id);
+	
+	_element_PasswordTab = document.createElement('form');
+	_element_PasswordTab.id = id + 'AuthenticationTab';
+	_element_Calendar.appendChild(_element_PasswordTab);
+	
+	_element_CalendarJs = document.createElement('div');
+	_element_CalendarJs.id = id + 'Js';
+	_element_Calendar.appendChild(_element_CalendarJs);
+	
+	var authenticationTab = new authenticationTabJs(_element_PasswordTab.id);
+  
+	import('./Calendar.js/src/calendarjs.js')
+		.then(({calendarJs}) => {
+			var calendarInstance = new calendarJs( 'myCalendarJs', options, searchOptions, startDateTime);
+			getAllEvents(calendarInstance);
+		});
+}
+
+
+
+/*
+* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* authentication
+* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/

@@ -8,18 +8,11 @@
 	</head>
 	<body>
 		<h1>Online Calendar</h1>
-		<div id="myCalendar">
-		</div>
+		<div id="myOnlineCalendar"></div>
         <script>
-			// makeCalendarJs(id, options, searchOptions, startDateTime)
-			makeCalendarJs( "myCalendar", { 
-				exportEventsEnabled: false,
-				manualEditingEnabled: true,
-				showTimesInMainCalendarEvents: false,
-				onEventAdded: addEvent,
-				onEventRemoved: removeEvent,
-				onEventUpdated: updateEvent,
-				});
+			// OnlineCalendar(id, {CalendarjsOptions})
+			// CalendarJs(id, {options}, {searchOptions}, startDateTime) 
+			onlineCalendarInstance = new OnlineCalendar("myOnlineCalendar");
 		</script>
    	</body>
 </html>

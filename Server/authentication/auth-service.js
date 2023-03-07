@@ -1,12 +1,10 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const { promisify } = require('util');
 const updateEnv = require('./updateEnv');
 require('dotenv').config();
 
 const saltRounds = 10;
 
-//pass  in db.authentication
 const createAuthenticationService = () => {
 	const authenticationService = {};
 	
@@ -21,9 +19,9 @@ const createAuthenticationService = () => {
 			if (match) {
 				const token = jwt.sign(
 					{
-						exp: Math.floor(Date.now() / 1000) +60 * 60,
+						exp: Math.floor(Date.now() / 1000) +60 * 60, //expires in 1 hour
 					},
-					secret
+					process.env.ACCESS_TOKEN_SECRET
 				);
 				return token;
 			} else throw new Error('password incorrect');
@@ -31,12 +29,13 @@ const createAuthenticationService = () => {
 	};
 	
 	authenticationService.checkToken = (token, cb) => {
-		jwt.verify(token, secret, (err, decoded) => {
-			console.log( 'err: ', err, 'decoded: ', decoded);
+		jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
 			if (err){
+				console.log('err', token)
 				cb(err);
 			} else {
-				cb(null);
+				console.log('ok', token)
+				cb();
 			}
 		});
 	};
