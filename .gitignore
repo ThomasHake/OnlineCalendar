@@ -2,3 +2,4 @@ Server/database/events.db
 Server/node_modules
 Server/ιunused
 Server/.env
+Client/Calender.js
