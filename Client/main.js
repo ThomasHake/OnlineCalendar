@@ -12,7 +12,6 @@ function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 		},
 		_document = null,
 		_window = null,
-		_token = '',
 		_initialized = false,
 		_element_OnlineCalendar = null,
 		_element_PasswordTab = null,
@@ -128,7 +127,6 @@ function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 			credentials: 'include',
 			headers: {
 				'Content-Type': 'application/json',
-				'Authorization': _token,
 			},
 		body: JSON.stringify(event)
 		});
@@ -140,7 +138,6 @@ function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 			credentials: 'include',
 			headers: {
 				'Content-Type': 'application/json',
-				'Authorization': _token,
 				},
 			body: JSON.stringify(event)
 			});
@@ -152,7 +149,6 @@ function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 			credentials: 'include',
 			headers: {
 				'Content-Type': 'application/json',
-				'Authorization': _token,
 			},
 		body: JSON.stringify(event)
 		});
