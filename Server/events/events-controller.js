@@ -4,7 +4,6 @@ const createEventsController = (eventsService) => {
 	eventsController.getAll = (req, res, next) => {
 		eventsService.getAll(req.body)
 		.then((events) => {
-			console.log('here2')
 			res.status(200);		
 			res.send(events);		
 		})
@@ -18,7 +17,6 @@ const createEventsController = (eventsService) => {
 		eventsService
 		.post(req.body)
 		.then(() => {
-			console.log(req.cookies);
 			res.status(200).end();
 			})
 		.catch((err) => {
