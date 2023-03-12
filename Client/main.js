@@ -54,7 +54,7 @@ function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 		_element_OnlineCalendar.appendChild(_element_EditMode);
 	}
 	
-	async function authenticate(event) {		//httpOnly cookie in response
+	async function authenticate(event) {		//httpOnly cookie added by response
 		event.preventDefault();
 		const password = _document.getElementById('calendarPassword').value;
 		await fetch('/authentication/authenticate', {
@@ -68,23 +68,33 @@ function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 		})
 		.then(res => res = res.json())
 		.then((res) => {
-			showEditMode();
+			startEditMode();
+			console.log(res)
+			setTimeout(endEditMode, res.cookieMaxAge);
 		})
 		.catch(err => console.log(err));
 	}	
 	
-	function showEditMode(){
+	function startEditMode(){
 		_element_PasswordTab.style.display = 'none';
 		_element_EditMode.style.display = 'block';
-		setEditModeOptions();
+		setEditOptions();
 	}
 	
-	function setEditModeOptions(){
+	function setEditOptions(){
 		_calendarInstance.setOptions({
 			manualEditingEnabled: true,
 			onEventAdded: addEvent,
 			onEventRemoved: removeEvent,
 			onEventUpdated: updateEvent,
+		});
+	}
+	
+	function endEditMode(){
+		_element_PasswordTab.style.display = 'block';
+		_element_EditMode.style.display = 'none';
+		_calendarInstance.setOptions({
+			manualEditingEnabled: false,
 		});
 	}
 	

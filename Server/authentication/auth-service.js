@@ -4,6 +4,8 @@ const updateEnv = require('./updateEnv');
 require('dotenv').config();
 
 const saltRounds = 10;
+const tokenExpiration = Math.floor(Date.now() / 1000) + 30      //expires in 30 sec
+const tokenExpiration2 = Math.floor(Date.now() / 1000) + (parseInt(process.env.ATHENTICATION_DURATION) / 1000)
 
 const createAuthenticationService = () => {
 	const authenticationService = {};
@@ -17,9 +19,12 @@ const createAuthenticationService = () => {
 	authenticationService.authenticate = (password) => {
 		return bcrypt.compare(password, process.env.AUTHENTICATION_PASSWORD).then((match) => {
 			if (match) {
+				console.log(tokenExpiration);
+				console.log(tokenExpiration2);
+				console.log(parseInt(process.env.ATHENTICATION_DURATION))
 				const token = jwt.sign(
 					{
-						exp: Math.floor(Date.now() / 1000) +60 * 60, //expires in 1 hour
+						exp: tokenExpiration, 
 					},
 					process.env.ACCESS_TOKEN_SECRET
 				);
