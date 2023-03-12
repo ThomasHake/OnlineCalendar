@@ -69,7 +69,6 @@ function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 		.then(res => res = res.json())
 		.then((res) => {
 			startEditMode();
-			console.log(res)
 			setTimeout(endEditMode, res.cookieMaxAge);
 		})
 		.catch(err => console.log(err));

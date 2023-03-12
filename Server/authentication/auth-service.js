@@ -19,9 +19,6 @@ const createAuthenticationService = () => {
 	authenticationService.authenticate = (password) => {
 		return bcrypt.compare(password, process.env.AUTHENTICATION_PASSWORD).then((match) => {
 			if (match) {
-				console.log(tokenExpiration);
-				console.log(tokenExpiration2);
-				console.log(parseInt(process.env.ATHENTICATION_DURATION))
 				const token = jwt.sign(
 					{
 						exp: tokenExpiration, 
