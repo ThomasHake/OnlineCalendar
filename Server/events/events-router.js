@@ -1,13 +1,14 @@
 const Router = require('express').Router;
 const createEventsController = require('./events-controller');
 const createEventsService = require('./events-service');
-const db = require('../database/db');
+//const db = require('../database/db');
 const checkToken = require('../authentication/auth-mid-checkToken');
 
 
 function createEventsRouter(authenticaitonRouter){
 
-	const eventsService = createEventsService(db.events);
+	//const eventsService = createEventsService(db.events);
+	const eventsService = createEventsService();
 	const eventsController = createEventsController(eventService);
 
 	const eventsRouter = new Router();

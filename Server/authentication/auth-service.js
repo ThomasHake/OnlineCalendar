@@ -4,8 +4,8 @@ const updateEnv = require('./updateEnv');
 require('dotenv').config();
 
 const saltRounds = 10;
-const tokenExpiration = Math.floor(Date.now() / 1000) + 30      //expires in 30 sec
-const tokenExpiration2 = Math.floor(Date.now() / 1000) + (parseInt(process.env.ATHENTICATION_DURATION) / 1000)
+const tokenExpiration = Math.floor(Date.now()/1000) + 30      //expires in 30 sec
+const tokenExpiration2 = Math.floor(Date.now()/1000 + (parseInt(process.env.ATHENTICATION_DURATION)/1000))
 
 const createAuthenticationService = () => {
 	const authenticationService = {};
@@ -21,7 +21,7 @@ const createAuthenticationService = () => {
 			if (match) {
 				const token = jwt.sign(
 					{
-						exp: tokenExpiration, 
+						exp: tokenExpiration2, 
 					},
 					process.env.ACCESS_TOKEN_SECRET
 				);
@@ -30,17 +30,6 @@ const createAuthenticationService = () => {
 		});
 	};
 	
-	authenticationService.checkToken = (token, cb) => {
-		jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
-			if (err){
-				console.log('err', token)
-				cb(err);
-			} else {
-				console.log('ok', token)
-				cb();
-			}
-		});
-	};
 	return authenticationService;
 };
 

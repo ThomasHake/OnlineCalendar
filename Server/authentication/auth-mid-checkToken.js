@@ -8,9 +8,9 @@ checkToken = (req, res, next) => {
 		return res.status(401).send({ message: "authentication expired" });
 	}
 
-	jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+	jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {	//need catch for exeption. promise?
 		if (err){
-			console.log('err', token)
+			console.log('err:', err) 
 			return res.status(401).send({ ok: false, error: err });
 		}
 		next();
