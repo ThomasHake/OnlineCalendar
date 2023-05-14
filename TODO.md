@@ -4,8 +4,9 @@
 - [ ] allow user to set password when there is no password
 - [ ] stay in edit mode on reload
 - [ ] set tooltip text for edit mode button
-- [ ] add options
+- [ ] add options (edit mode)
   - [ ] allow user to change password
   - [ ] allow user to change token duration?
 - [✓] refactor the check token process in events and authentication folders
-- [ ] replace nedb with another database
+- [✓] replace nedb with another database
+- [ ] cache data in local storage to reduce requests to server (apicache + Cache-Control?) 

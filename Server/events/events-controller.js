@@ -40,11 +40,14 @@ const createEventsController = (eventsService) => {
 		.update(req.body)
 		.then(() => res.status(200).end())
 		.catch((err) => {
-			res.status(401).send({ ok: false, error: err.message });
+			res.status(401);
+			res.send({ ok: false, error: err.message });
 		});	
 	};
 	
 	return eventsController;
 };
+
+
 
 module.exports = createEventsController;
