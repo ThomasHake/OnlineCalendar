@@ -10,3 +10,4 @@
 - [✓] refactor the check token process in events and authentication folders
 - [✓] replace nedb with another database
 - [ ] cache data in local storage to reduce requests to server (apicache + Cache-Control?) 
+- [ ] set max events for public hosting
