@@ -138,7 +138,7 @@ function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 				'Content-Type': 'application/json',
 			},
 		body: JSON.stringify(event)
-		});
+		});														//catch err?
 	};
 
 	function removeEvent(event){
@@ -148,11 +148,11 @@ function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 			headers: {
 				'Content-Type': 'application/json',
 				},
-			body: JSON.stringify(event)
+			body: JSON.stringify(event)							//only id
 			});
 	};
 
-	function updateEvent(event){
+	function updateEvent(event){								
 		fetch('/calendarjs/events', {
 			method: 'PUT',
 			credentials: 'include',
