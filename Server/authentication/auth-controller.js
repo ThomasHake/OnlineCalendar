@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const createAuthenticationController = (authenticationService) => {
 	const authenticationController = {};
 	
@@ -18,13 +20,13 @@ const createAuthenticationController = (authenticationService) => {
 		authenticationService
 			.authenticate(req.body.password)
 			.then((token) => {
-				res.status(200);
+				res.status(200);			
 				res.cookie('JWT', token, {
 					httpOnly: true,
-					maxAge: 1000 * 60 * 15,								// 15 minutes
+					maxAge: parseInt(process.env.ATHENTICATION_DURATION)
 					//secure: process.env.NODE_ENV === "production",    //use https not http?
 				})
-				res.send({ ok: true, token });
+				res.send({ok: true, cookieMaxAge: parseInt(process.env.ATHENTICATION_DURATION)});
 			})
 			.catch((err) => {
 				console.log(err.message)
