@@ -18,12 +18,11 @@ mongoose.connect(process.env.MONGODB_EVENTS_CONNECTION_STRING)	// mongoose auto 
 
 
 Event.findPromise = promisify(Event.find);
+Event.removePromise = promisify(Event.findOneAndRemove);
+Event.updatePromise = promisify(Event.findByIdAndUpdate);
 Event.insertPromise = promisify((event)=>{
 	new Event( event ).save();
 });
-Event.removePromise = promisify(Event.findOneAndRemove);
-Event.updatePromise = promisify(Event.findByIdAndUpdate);
-
 
 
 

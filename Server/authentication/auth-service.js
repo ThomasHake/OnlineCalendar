@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const updateEnv = require('./updateEnv');
 require('dotenv').config();
 
-const saltRounds = 10;
+const saltRounds = parseInt(process.env.SALT_ROUNDS);
 const tokenExpiration = Math.floor(Date.now()/1000 + (parseInt(process.env.ATHENTICATION_DURATION)/1000))
 
 const createAuthenticationService = () => {
