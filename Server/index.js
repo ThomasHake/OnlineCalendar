@@ -15,7 +15,7 @@ authenticationRouter = createAuthenticationRouter();
 eventRouter = createEventRouter();
 
 server.use('/authentication', authenticationRouter);
-server.use('/calendarjs', eventRouter);
+server.use('/calendarjs', eventRouter); 
 
 
 const port = process.env.PORT || 3000;

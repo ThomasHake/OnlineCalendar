@@ -4,11 +4,9 @@ const createAuthenticationController = (authenticationService) => {
 	const authenticationController = {};
 	
 	authenticationController.register = (req, res, next) => {	//service.register is promise?
-		console.log('req.body: ', req.body);
 		authenticationService
 			.register(req.body.password)
 			.then((doc) => {
-				console.log('controller register doc: ', doc);
 				res.status(200).end();
 			})
 			.catch((err) => {
