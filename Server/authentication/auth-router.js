@@ -1,12 +1,11 @@
 const Router = require('express').Router;
 const createAuthenticationController = require('./auth-controller');
 const createAuthenticationService = require('./auth-service');
+//require('dotenv').config();
+
 
 function createAuthenticationRouter(){
 	const authenticationService = createAuthenticationService();
-	console.log('here')
-	console.log(authenticationService)
-	console.log('here')
 	const authenticationController = createAuthenticationController(authenticationService);
 
 	const authenticationRouter = new Router();

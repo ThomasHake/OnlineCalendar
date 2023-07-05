@@ -29,7 +29,6 @@ const createEventsService = () => {
 	eventService.post = (req) => {
 		//return db.insertPromise(event)
 		const event = new Event( req );
-		console.log()
 		return event.save()
 		.catch((err) => console.log(err));
 	}
