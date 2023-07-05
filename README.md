@@ -8,9 +8,9 @@ This project also has some front end code (javascript and css) in order to add a
 
 ## how to use 
 
-* make the file "Server/.env" and fill it with:
-		ACCESS_TOKEN_SECRET=password1
-		REFRESH_TOKEN_SECRET=password2
-		AUTHENTICATION_PASSWORD=
-		MONGODB_EVENTS_CONNECTION_STRING=
-		ATHENTICATION_DURATION=3600000
+* make the file "Server/.env" and fill it with:  
+		ACCESS_TOKEN_SECRET=password1  
+		REFRESH_TOKEN_SECRET=password2  
+		AUTHENTICATION_PASSWORD=  
+		MONGODB_EVENTS_CONNECTION_STRING=  
+		ATHENTICATION_DURATION=3600000  
