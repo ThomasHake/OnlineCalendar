@@ -7,9 +7,9 @@ This project also has some front end code (javascript and css) in order to add a
 
 
 ## how to use 
-git clone https://github.com/ThomasHake/OnlineCalendar.git
-cd OnlineCalendar
-git submodule update --init
+git clone https://github.com/ThomasHake/OnlineCalendar.git  
+cd OnlineCalendar  
+git submodule update --init  
 
 
 
