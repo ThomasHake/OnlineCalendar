@@ -107,6 +107,7 @@ function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 		
 		import(_calendarJsFile)
 		.then(({calendarJs}) => {
+			console.log(typeof(calendarJs))
 			_calendarInstance = new calendarJs(calendarJsArguments.id,
 											   calendarJsArguments.options,
 											   calendarJsArguments.searchOptions,
