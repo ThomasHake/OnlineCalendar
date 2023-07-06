@@ -13,12 +13,9 @@ function createAuthenticationRouter(){
 	authenticationRouter.post('/register', authenticationController.register);
 	authenticationRouter.post('/authenticate', authenticationController.authenticate);
 	if(passwordText !== ''){
-		console.log(passwordText)
 		authenticationService.register(passwordText);  // register password + delete plain text password
 	}
 	return authenticationRouter;
 }
 	
 module.exports = createAuthenticationRouter;
-
-//authenticationService.register('password');  // register the password
