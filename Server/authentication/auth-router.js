@@ -1,8 +1,8 @@
 const Router = require('express').Router;
 const createAuthenticationController = require('./auth-controller');
 const createAuthenticationService = require('./auth-service');
-//require('dotenv').config();
-
+require('dotenv').config();
+passwordText = process.env.PASSWORD_PLAIN_TEXT
 
 function createAuthenticationRouter(){
 	const authenticationService = createAuthenticationService();
@@ -12,8 +12,10 @@ function createAuthenticationRouter(){
 
 	authenticationRouter.post('/register', authenticationController.register);
 	authenticationRouter.post('/authenticate', authenticationController.authenticate);
-	authenticationService.register('pass');  // register the password
-
+	if(passwordText !== ''){
+		console.log(passwordText)
+		authenticationService.register(passwordText);  // register password + delete plain text password
+	}
 	return authenticationRouter;
 }
 	
