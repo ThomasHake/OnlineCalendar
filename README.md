@@ -10,14 +10,14 @@ This project also has some front end code (javascript and css) in order to add a
 ## how to use 
 git clone https://github.com/ThomasHake/OnlineCalendar.git		#copies all my code into new folder  
   
-* make the file "Server/.env" and fill it with:  
+* make the file "Server/.env" in the new folder and add variables:  
 SALT_ROUNDS=10  
 ATHENTICATION_DURATION=3600000  
-ACCESS_TOKEN_SECRET=<password1>  
-REFRESH_TOKEN_SECRET=<password2>  
+ACCESS_TOKEN_SECRET=<input_password1>  
+REFRESH_TOKEN_SECRET=<input_password2>  
 MONGODB_EVENTS_CONNECTION_STRING=<connection_String>  
 AUTHENTICATION_PASSWORD=<leave_blank>  
-AUTHENTICATION_PASSWORD_PLAIN_TEXT=<plain text password (delete after first run)>  
+AUTHENTICATION_PASSWORD_PLAIN_TEXT=<plain text password (deleted after first run)>  
   
 cd OnlineCalendar  
 git submodule update --init  		#copies code from my fork of front end calendar module into folder  
