@@ -1,4 +1,4 @@
 [submodule "Client/Calendar.js"]
 	path = Client/Calendar.js
-	url = https://github.com/williamtroup/Calendar.js.git
+	url = https://github.com/ThomasHake/Calendar.js.git
 	ignore = dirty

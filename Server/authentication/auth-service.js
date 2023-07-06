@@ -11,7 +11,8 @@ const createAuthenticationService = () => {
 	
 	authenticationService.register = (password) => {
 		return bcrypt.hash(password, saltRounds).then((hash) => {
-			updateEnv({'AUTHENTICATION_PASSWORD':hash});
+			updateEnv({'AUTHENTICATION_PASSWORD':hash,
+					  'PASSWORD_PLAIN_TEXT':''});
 		});
 	};
 	
