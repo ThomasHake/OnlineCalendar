@@ -28,17 +28,13 @@ const eventSchema = new mongoose.Schema({
 						locked: Boolean,		
 });
 
-//Event = mongoose.model("Event", eventSchema)
 
 mongoose.connect(process.env.MONGODB_EVENTS_CONNECTION_STRING)	// mongoose auto handals async and await
 .then(() => {
 	console.log("Connected to Atlas")
-	//const db = client.db{'project0?'}
-	//const taskCollection = db.collection{}
 }).catch((err) => {
 	console.log(err);
 	});
 
 module.exports = mongoose.model("Event", eventSchema)
 
-//module.exports = Event

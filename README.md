@@ -9,8 +9,13 @@ This project also has some front end code (javascript and css) in order to add a
 
 ## how to use 
 git clone https://github.com/ThomasHake/OnlineCalendar.git		#copies all my code into new folder  
-  
-* make the file "Server/.env" in the new folder and add variables:  
+cd OnlineCalendar  
+git submodule update --init  		#copies code from my fork of front end calendar module into folder  
+cd Server  
+npm install
+
+
+* make the file ".env" in the Server Directory and fill it with:  
 SALT_ROUNDS=10  
 ATHENTICATION_DURATION=3600000  
 ACCESS_TOKEN_SECRET=<input_password1>  
@@ -19,9 +24,7 @@ MONGODB_EVENTS_CONNECTION_STRING=<connection_String>
 AUTHENTICATION_PASSWORD=<leave_blank>  
 AUTHENTICATION_PASSWORD_PLAIN_TEXT=<plain text password (deleted after first run)>  
   
-cd OnlineCalendar  
-git submodule update --init  		#copies code from my fork of front end calendar module into folder  
-cd Server  
+  
 nodemon index.js				#starts Server  
   
 you can now open LocalHost:3000 in web browser to see calendar  
