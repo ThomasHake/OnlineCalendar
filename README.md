@@ -15,7 +15,7 @@ cd Server
 npm install
 
 
-* make the file ".env" in the Server Directorys and fill it with:  
+* make the file ".env" in the Server Directory and fill it with:  
 SALT_ROUNDS=10  
 ATHENTICATION_DURATION=3600000  
 ACCESS_TOKEN_SECRET=<input_password1>  
@@ -24,7 +24,7 @@ MONGODB_EVENTS_CONNECTION_STRING=<connection_String>
 AUTHENTICATION_PASSWORD=<leave_blank>  
 AUTHENTICATION_PASSWORD_PLAIN_TEXT=<plain text password (deleted after first run)>  
   
-
+  
 nodemon index.js				#starts Server  
   
 you can now open LocalHost:3000 in web browser to see calendar  
