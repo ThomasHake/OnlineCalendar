@@ -10,7 +10,6 @@ function createAuthenticationRouter(){
 
 	const authenticationRouter = new Router();
 
-	authenticationRouter.post('/register', authenticationController.register);
 	authenticationRouter.post('/authenticate', authenticationController.authenticate);
 	if(passwordText !== ''){
 		authenticationService.register(passwordText);  // register password + delete plain text password
@@ -19,3 +18,9 @@ function createAuthenticationRouter(){
 }
 	
 module.exports = createAuthenticationRouter;
+
+/*
+// use to make the password set by client insted of server
+
+	authenticationRouter.post('/register', authenticationController.register);    
+*/
