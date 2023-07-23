@@ -1,14 +1,10 @@
-## Content
+## Sugjestions for if I come back to this project
 
-- [✓] save token client side in http only cookie
 - [ ] allow user to set password when there is no password
-	- change files index.js, auth-service.js, main.js
+	- [ ] change files index.js, auth-service.js, main.js
 - [ ] stay in edit mode on reload
 - [ ] set tooltip text for edit mode button
 - [ ] add options (edit mode)
   - [ ] allow user to change password
   - [ ] allow user to change token duration?
-- [✓] refactor the check token process in events and authentication folders
-- [✓] replace nedb with mongoDB database
 - [ ] cache data in local storage to reduce requests to server (apicache + Cache-Control?) 
-- [ ] set max events for public hosting
