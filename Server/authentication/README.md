@@ -22,7 +22,6 @@ This folder contains node.js code for a modular authentication system that could
 - link a Node.js Express router to the auth-router.js file with an api call. (see index.js in parent directory)
 - use the /authentication/authenticate api call in the front end code. ("/authentication" set in index.js in parent directory)
 - in api calls that require authentication add code:
-	- - const checkToken = require('../authentication/auth-mid-checkToken');
+	> const checkToken = require('../authentication/auth-mid-checkToken');
 
-- add "checkToken" as middle-ware in router for api calls that require authentication
-.
+- add "checkToken" as middle-ware in router for api calls that require authentication.
