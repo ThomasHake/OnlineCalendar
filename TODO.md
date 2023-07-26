@@ -10,4 +10,4 @@
   - [ ] allow user to change password
   - [ ] allow user to change token duration?
 - [ ] cache data in local storage to reduce requests to server (apicache + Cache-Control?) 
-- [ ] roatating refresh token
+- [ ] add roatating refresh token

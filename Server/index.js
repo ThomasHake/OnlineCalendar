@@ -4,7 +4,7 @@ const path = require('path');
 const createEventRouter = require('./events/events-router');
 const createAuthenticationRouter = require('./authentication/auth-router');
 const Router = express.Router;
-const server = new express();
+const server = express();
  
 
 server.use(express.static(path.join(__dirname, '..', 'Client')));
