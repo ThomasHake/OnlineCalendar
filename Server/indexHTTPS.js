@@ -32,5 +32,5 @@ app.use('/authentication', authenticationRouter);
 app.use('/calendarjs', eventRouter); 
 
 
-server.listen(80, '0.0.0.0', () => console.log(`listening on ${port}`)); 
-httpsServer.listen(443, '0.0.0.0', () => console.log(`listening on ${port}`));
+server.listen(80, '0.0.0.0', () => console.log(`listening on port 80`)); 
+httpsServer.listen(443, '0.0.0.0', () => console.log(`listening on port 443`));
