@@ -6,7 +6,7 @@ front end calendar here: https://github.com/williamtroup/Calendar.js/blob/main
 The server side code includes a system for authorization and a system for storing events in an Atlus MongoDB Server. 
 This project also has some front end code (javascript and css) in order to add a password input section to the calendar module that it is working with  
 
-There currently is an instance of this code on a singal board computer running linux and useing residential internet here: https://thomashake.ddns.net  
+There currently is an instance of this code on a singal board computer running linux and using residential internet here: https://thomashake.ddns.net  
 
 
 ## How to use 
