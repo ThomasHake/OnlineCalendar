@@ -13,18 +13,12 @@ const server = https.createServer(app);
 const privateKey = fs.readFileSync('../keys/privkey.pem', 'utf8');
 const certificate = fs.readFileSync('../keys/cert.pem', 'utf8');
 const ca = fs.readFileSync('../keys/chain.pem', 'utf8');
-
 const credentials = {
 	key: privateKey,
 	cert: certificate,
 	ca: ca
 };
-
 const httpsServer = https.createServer(credentials, app);
-
-
-
-
 
 
 app.use(express.static(path.join(__dirname, '..', 'Client')));
@@ -38,6 +32,5 @@ app.use('/authentication', authenticationRouter);
 app.use('/calendarjs', eventRouter); 
 
 
-const port = process.env.PORT || 80;
-//server.listen(port, '127.0.0.1', () => console.log(`listening on ${port}`)); //Localhost
-server.listen(port, '0.0.0.0', () => console.log(`listening on ${port}`)); //All Interfaces
+server.listen(80, '0.0.0.0', () => console.log(`listening on ${port}`)); 
+httpsServer.listen(443, '0.0.0.0', () => console.log(`listening on ${port}`));
