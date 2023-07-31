@@ -15,9 +15,9 @@ authenticationRouter = createAuthenticationRouter();
 eventRouter = createEventRouter();
 
 server.use('/authentication', authenticationRouter);
-server.use('/calendarjs', eventRouter); 
+server.use('/events', eventRouter); 
 
 
 const port = process.env.PORT || 3000;
-server.listen(port, '127.0.0.1', () => console.log(`listening on ${port}`)); //Localhost
+server.listen(port, 'localhost', () => console.log(`listening on ${port}`)); //Localhost
 //server.listen(port, '0.0.0.0', () => console.log(`listening on ${port}`)); //All Interfaces

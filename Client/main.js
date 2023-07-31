@@ -18,7 +18,8 @@ function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 		_element_PasswordInput = null,
 		_element_EditMode = null,
 		_element_CalendarJs = null,
-		_calendarInstance = null;
+		_calendarInstance = null,
+		_URL = window.location.href;
 
 	function buildAuthenticationTab() {
 		buildPasswordInputView();
@@ -57,7 +58,7 @@ function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 	async function authenticate(event) {		//httpOnly cookie added by response
 		event.preventDefault();
 		const password = _document.getElementById('calendarPassword').value;
-		await fetch('/authentication/authenticate', {
+		await fetch(_URL + '/authentication/authenticate', {
 			method: 'POST',
 			headers: {
 				'content-Type': 'application/json'
@@ -124,14 +125,16 @@ function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 
 	
 	function getAllEvents(calendarInstance){
-		fetch('/calendarjs/events/all', {'Accept': 'application/json'})
+		fetch(_URL + '/events/crud', {
+			'Accept': 'application/json'
+		})
 			.then((response) => response.json()) 
 			.then((events) => calendarInstance.setEvents(events))
 			.catch((err) => console.log(err));
 	}
 
 	function addEvent(event){
-		fetch('/calendarjs/events', {
+		fetch(_URL + '/events/crud', {
 			method: 'POST',
 			credentials: 'include',
 			headers: {
@@ -142,7 +145,7 @@ function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 	};
 
 	function removeEvent(event){
-		fetch('/calendarjs/events', {
+		fetch(_URL + '/events/crud', {
 			method: 'DELETE',
 			credentials: 'include',
 			headers: {
@@ -153,7 +156,7 @@ function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 	};
 
 	function updateEvent(event){								
-		fetch('/calendarjs/events', {
+		fetch(_URL + '/events/crud', {
 			method: 'PUT',
 			credentials: 'include',
 			headers: {

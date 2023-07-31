@@ -29,7 +29,7 @@ authenticationRouter = createAuthenticationRouter();
 eventRouter = createEventRouter();
 
 app.use('/authentication', authenticationRouter);
-app.use('/calendarjs', eventRouter); 
+app.use('/events', eventRouter); 
 
 
 server.listen(80, '0.0.0.0', () => console.log(`listening on port 80`)); 
