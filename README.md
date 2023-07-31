@@ -28,7 +28,7 @@ AUTHENTICATION_PASSWORD_PLAIN_TEXT=	<plain text password (deleted after first ru
   
 nodemon index.js				#starts Server  
   
-you can now open LocalHost:3000 in web browser to see calendar  
+you can now open LocalHost:3000 in any web browser to see the calendar  
 
 
 
