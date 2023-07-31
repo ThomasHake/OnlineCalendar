@@ -19,7 +19,7 @@ function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 		_element_EditMode = null,
 		_element_CalendarJs = null,
 		_calendarInstance = null,
-		_URL = window.location.href;
+		_URL = window.location.href.replace(/\/+$/, '');
 
 	function buildAuthenticationTab() {
 		buildPasswordInputView();
@@ -125,7 +125,7 @@ function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 
 	
 	function getAllEvents(calendarInstance){
-		fetch(_URL + '/events/crud', {
+		fetch(_URL + '/events/crud', {			//can work with uri from reverse proxi
 			'Accept': 'application/json'
 		})
 			.then((response) => response.json()) 
