@@ -11,10 +11,10 @@ function createEventsRouter(authenticaitonRouter){
 
 	const eventsRouter = new Router();
 	
-	eventsRouter.get('/events/all', eventsController.getAll);
-	eventsRouter.post('/events', checkToken, eventsController.post);
-	eventsRouter.delete('/events', checkToken, eventsController.delete);
-	eventsRouter.put('/events', checkToken, eventsController.update);
+	eventsRouter.get('/crud', eventsController.getAll);
+	eventsRouter.post('/crud', checkToken, eventsController.post);
+	eventsRouter.delete('/crud', checkToken, eventsController.delete);
+	eventsRouter.put('/crud', checkToken, eventsController.update);
 
 	return eventsRouter;
 }
