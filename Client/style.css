@@ -1,4 +1,4 @@
-@import "Calendar.js/src/calendarjs.css"; 
+@import "Calendar.js/dist/calendar.js.css"; 
 
 body{
   background: linear-gradient(145deg, black, silver, black);
