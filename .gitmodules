@@ -1,0 +1,3 @@
+[submodule "Client/Calendar.js"]
+	path = Client/Calendar.js
+	url = https://github.com/ThomasHake/Calendar.js.git
