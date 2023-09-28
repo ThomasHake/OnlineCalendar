@@ -1,7 +1,7 @@
 //OnlineCalendar()
 function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 	var _this = this,
-		_calendarJsFile = './Calendar.js/src/calendar.js',
+		_calendarJsFile = './Calendar.js/dist/calendar.js',
 		_default_CalendarJsArguments = {
 			id: 'myCalendarJs',
 			options:{ 
@@ -110,8 +110,7 @@ function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 		.then(({calendarJs}) => {
 			_calendarInstance = new calendarJs(calendarJsArguments.id,
 											   calendarJsArguments.options,
-											   calendarJsArguments.searchOptions,
-											   calendarJsArguments.startDateTime);
+											   calendarJsArguments.searchOptions);
 			getAllEvents(_calendarInstance);
 		});
 	}
