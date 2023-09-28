@@ -1,7 +1,7 @@
 //OnlineCalendar()
 function OnlineCalendar(id, calendarJsArguments){		//add options argument later
 	var _this = this,
-		_calendarJsFile = './Calendar.js/src/calendarjs.js',
+		_calendarJsFile = './Calendar.js/src/calendar.js',
 		_default_CalendarJsArguments = {
 			id: 'myCalendarJs',
 			options:{ 
