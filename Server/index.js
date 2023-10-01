@@ -18,6 +18,6 @@ server.use('/authentication', authenticationRouter);
 server.use('/events', eventRouter); 
 
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3210;
 server.listen(port, 'localhost', () => console.log(`listening on ${port}`)); //Localhost
 //server.listen(port, '0.0.0.0', () => console.log(`listening on ${port}`)); //All Interfaces
