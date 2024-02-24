@@ -23,12 +23,12 @@ ATHENTICATION_DURATION=3600000
 ACCESS_TOKEN_SECRET=	<input_secret(8 random alpha-numeric characters)>  
 MONGODB_EVENTS_CONNECTION_STRING=	<connection_String>  
 AUTHENTICATION_PASSWORD=	<leave_blank>  
-AUTHENTICATION_PASSWORD_PLAIN_TEXT=	<plain text password (deleted after first run)>  
+PASSWORD_PLAIN_TEXT=	<plain text password (deleted after first run)>  
   
   
 nodemon index.js				#starts Server  
   
-you can now open LocalHost:3000 in any web browser to see the calendar  
+you can now open LocalHost:3210 in any web browser to see the calendar  
 
 
 
