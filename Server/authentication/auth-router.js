@@ -2,7 +2,7 @@ const Router = require('express').Router;
 const createAuthenticationController = require('./auth-controller');
 const createAuthenticationService = require('./auth-service');
 require('dotenv').config();
-passwordText = process.env.PASSWORD_PLAIN_TEXT;
+const passwordText = process.env.PASSWORD_PLAIN_TEXT;
 
 function createAuthenticationRouter(){
 	const authenticationService = createAuthenticationService();
